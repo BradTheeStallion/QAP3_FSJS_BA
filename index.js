@@ -46,7 +46,18 @@ app.get("/login", (request, response) => {
 
 // POST /login - Allows a user to login
 app.post("/login", (request, response) => {
-
+    const user = USERS.find(user => user.email === request.body.email);
+    if (user && bcrypt.compareSync(request.body.password, user.password)) {
+        request.session.user = {
+            id: user.id,
+            username: user.username,
+            email: user.email,
+            role: user.role
+        };
+        response.redirect("/landing");
+    } else {
+        response.status(401).send("Invalid email or password");
+    }
 });
 
 // GET /signup - Render signup form
