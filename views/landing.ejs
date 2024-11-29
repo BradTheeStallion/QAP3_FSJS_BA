@@ -1,7 +1,29 @@
 <%- include('partials/header', { title: "Home" }) %>
-    <h1>Authentication Practice</h1>
-    <span class="index-button-container">
-        <button onclick="window.location.href='/login'">Login</button>
-        <button onclick="window.location.href='/signup'">Sign Up</button>
-    </span>
+<h1>Welcome, <%= username %>!</h1>
+        
+<% if (role === 'admin') { %>
+    <h2>Registered Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(function(user) { %>
+                <tr>
+                    <td><%= user.username %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.role %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <p>This is your user dashboard.</p>
+<% } %>
+
+<a href="/logout">Logout</a>
 <%- include('partials/footer') %>
