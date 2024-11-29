@@ -56,7 +56,7 @@ app.post("/login", (request, response) => {
         };
         response.redirect("/landing");
     } else {
-        response.status(401).send("Invalid email or password");
+        response.status(401).send("Invalid credentials");
     }
 });
 
