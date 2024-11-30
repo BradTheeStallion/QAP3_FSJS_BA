@@ -7,11 +7,13 @@ const app = express();
 const PORT = 3000;
 const SALT_ROUNDS = 10;
 
+require('dotenv').config();
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(
     session({
-        secret: "replace_this_with_a_secure_key",
+        secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: true,
     })
