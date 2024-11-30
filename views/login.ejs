@@ -1,5 +1,10 @@
 <%- include('partials/header', { title: "Login" }) %>
     <h1>Login</h1>
+    <% if (error) { %>
+        <div>
+            <%= error %>
+        </div>
+    <% } %>
     <form action="/login" method="POST">
         <div class="form-input-container">
             <label for="email">Email:</label>
